@@ -1,44 +1,86 @@
-<div class="Valine payment">
-  <div class="payment-track" id="paymentTrack">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Valine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- CLONE LAST -->
-    <div class="payment-card">
-      <img src="assets/qris.png">
-      <h3>QRIS</h3>
-      <button onclick="openQRIS()">Lihat QR</button>
+<div class="bg-overlay"></div>
+
+<main class="container">
+  <h1>VALINE</h1>
+  <p class="subtitle">Payment & Official Links</p>
+
+  <!-- PAYMENT SLIDER -->
+  <div class="payment-wrapper">
+    <div class="payment-track" id="paymentTrack">
+
+      <!-- CLONE LAST -->
+      <div class="payment-card">
+        <img src="assets/qris.png">
+        <h3>QRIS</h3>
+        <button onclick="openQRIS()">Lihat QR</button>
+      </div>
+
+      <!-- REAL -->
+      <div class="payment-card">
+        <img src="assets/dana.jpg">
+        <h3>DANA</h3>
+        <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+      </div>
+
+      <div class="payment-card">
+        <img src="assets/buttons/shopepay.png">
+        <h3>ShopeePay</h3>
+        <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+      </div>
+
+      <div class="payment-card">
+        <img src="assets/gopay.png">
+        <h3>GoPay</h3>
+        <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+      </div>
+
+      <div class="payment-card">
+        <img src="assets/qris.png">
+        <h3>QRIS</h3>
+        <button onclick="openQRIS()">Lihat QR</button>
+      </div>
+
+      <!-- CLONE FIRST -->
+      <div class="payment-card">
+        <img src="assets/dana.jpg">
+        <h3>DANA</h3>
+        <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+      </div>
+
     </div>
+  </div>
 
-    <!-- REAL SLIDES -->
-    <div class="payment-card">
-      <img src="assets/dana.jpg">
-      <h3>DANA</h3>
-      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+  <!-- COUNTER -->
+  <div class="counter-glass">
+    <div>
+      <span id="copyCount">0</span>
+      <small>Total Salin</small>
     </div>
-
-    <div class="payment-card">
-      <img src="assets/shopepay.png">
-      <h3>ShopeePay</h3>
-      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+    <div>
+      <span id="trxCount">0</span>
+      <small>Total Transaksi</small>
     </div>
+  </div>
+</main>
 
-    <div class="payment-card">
-      <img src="assets/gopay.png">
-      <h3>GoPay</h3>
-      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
-    </div>
-
-    <div class="payment-card">
-      <img src="assets/qris.png">
-      <h3>QRIS</h3>
-      <button onclick="openQRIS()">Lihat QR</button>
-    </div>
-
-    <!-- CLONE FIRST -->
-    <div class="payment-card">
-      <img src="assets/dana.jpg">
-      <h3>DANA</h3>
-      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
-    </div>
-
+<!-- QRIS MODAL -->
+<div class="modal" id="qrisModal">
+  <div class="modal-content">
+    <img src="assets/buttons/qris.png">
+    <button onclick="closeQRIS()">Tutup</button>
   </div>
 </div>
+
+<script src="script.js"></script>
+</body>
+</html>
