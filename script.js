@@ -2,7 +2,7 @@
 const payments = [
   { name: "Dana", number: "8787-2848-734", icon: "assets/dana.jpg" },
   { name: "Gopay", number: "8787-2848-734", icon: "assets/gopay.png" },
-  { name: "ShopeePay", number: "8787-2848-734", icon: "assets/shope.png" },
+  { name: "ShopeePay", number: "8787-2848-734", icon: "assets/shopepay.png" },
   { name: "QRIS", number: "Scan QR", icon: "assets/whatsapp-group.png" }
 ];
 
@@ -80,6 +80,7 @@ function closeQR() {
 
 window.nextPay = nextPay;
 window.prevPay = prevPay;
-
+window.openQR = openQR;
+window.closeQR = closeQR;
 // Initialize
 updateUI();
