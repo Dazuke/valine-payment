@@ -51,13 +51,29 @@ function prevPay() {
   updateUI();
 }
 
+const copyBtn = document.getElementById("copyBtn");
+const copyCountEl = document.getElementById("copyCount");
+const trxCountEl = document.getElementById("trxCount");
+
+// Listen realtime database
+database.ref("copyCount").on("value", snap => {
+  copyCountEl.textContent = snap.val() || 0;
+});
+
+database.ref("trxCount").on("value", snap => {
+  trxCountEl.textContent = snap.val() || 0;
+});
+
+// Update database saat tombol salin diklik
 copyBtn.onclick = () => {
   navigator.clipboard.writeText(payments[index].number);
-  copyCount++;
-  trxCount++;
-  localStorage.setItem("copy", copyCount);
-  localStorage.setItem("trx", trxCount);
-  copyCountEl();
+  
+  // Increment copy count
+  database.ref("copyCount").transaction(current => (current || 0) + 1);
+  
+  // Increment trx count
+  database.ref("trxCount").transaction(current => (current || 0) + 1);
+  
   copyBtn.textContent = "✅ Tersalin";
   setTimeout(() => copyBtn.textContent = "📎 Salin Nomor", 1200);
 };
