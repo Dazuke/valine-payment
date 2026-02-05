@@ -5,96 +5,93 @@
 }
 
 body {
-  color: white;
   height: 100vh;
-  overflow: hidden;
+  color: white;
 }
 
 .bg {
   position: fixed;
   inset: 0;
-  background: url("assets/bg/wallpaper.png") center/cover;
-  filter: blur(12px);
-  z-index: -1;
-}
-
-.app {
-  max-width: 420px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
-}
-
-p { opacity: .7; margin-bottom: 20px; }
-
-.slider {
-  overflow: hidden;
-}
-
-.track {
-  display: flex;
-  transition: .4s;
+  background: url("assets/bg/wallpaper.png") center/cover no-repeat;
+  filter: blur(2px);
 }
 
 .card {
-  min-width: 100%;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 20px;
+  position: relative;
+  max-width: 380px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  text-align: center;
 }
 
-.card img {
-  width: 90px;
+.subtitle {
+  opacity: 0.8;
   margin-bottom: 12px;
-}
-
-button {
-  padding: 10px 20px;
-  border-radius: 14px;
-  border: none;
-  background: white;
-  color: black;
-  font-weight: 600;
 }
 
 .counter {
   display: flex;
-  justify-content: space-around;
-  margin: 14px 0;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 16px;
 }
 
-.counter span {
-  font-size: 22px;
-  font-weight: bold;
+.payment img {
+  width: 64px;
+  margin: 10px 0;
 }
 
-.menu {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 12px;
+#payNumber {
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
-.menu a {
-  background: rgba(0,0,0,.5);
-  padding: 12px;
-  border-radius: 16px;
-  text-decoration: none;
+button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  background: #5b7cff;
   color: white;
+  font-size: 15px;
 }
 
-.menu img {
+.switch {
+  margin-top: 10px;
+}
+
+.switch button {
+  background: transparent;
+  font-size: 24px;
+}
+
+.social {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.social a,
+.social .disabled {
+  background: rgba(0,0,0,0.3);
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.social img {
   width: 36px;
-  display: block;
-  margin: auto;
+  margin-bottom: 6px;
 }
 
-.menu span {
-  font-size: 13px;
-  opacity: .8;
-}
-
-.off {
-  opacity: .4;
-  pointer-events: none;
+.disabled {
+  opacity: 0.5;
 }
