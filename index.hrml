@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Valine • Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background overlay biar ada efek 3D -->
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+    <h1>Valine Payment</h1>
+    <p class="subtitle">Pilih metode pembayaran atau dukung lewat platform kami</p>
+
+    <!-- PAYMENT -->
+    <div class="section">
+      <h2>Payment</h2>
+
+      <button class="card" onclick="copyNumber('878-7274-8734')">
+        <img src="assets/buttons/dana.png">
+        <span>📎 Salin Nomor Dana</span>
+      </button>
+
+      <button class="card" onclick="copyNumber('878-7274-8734')">
+        <img src="assets/buttons/gopay.png">
+        <span>📎 Salin Nomor GoPay</span>
+      </button>
+
+      <button class="card" onclick="copyNumber('878-7274-8734')">
+        <img src="assets/buttons/shopepay.png">
+        <span>📎 Salin Nomor ShopeePay</span>
+      </button>
+
+      <button class="card" onclick="openQRIS()">
+        <img src="assets/buttons/qris.png">
+        <span>Lihat QRIS</span>
+      </button>
+
+      <div class="note">
+        Payment bank? Hubungi Valine langsung.
+      </div>
+    </div>
+
+    <!-- LINK -->
+    <div class="section">
+      <h2>Komunitas & Media</h2>
+
+      <a class="card link" href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO?mode=gi_t" target="_blank">
+        <img src="assets/buttons/whatsapp-group.png">
+        <span>WhatsApp Group</span>
+      </a>
+
+      <a class="card link" href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank">
+        <img src="assets/buttons/whatsapp-channel.png">
+        <span>WhatsApp Channel</span>
+      </a>
+
+      <div class="card disabled">
+        <img src="assets/buttons/tiktok.png">
+        <span>TikTok (ongoing)</span>
+      </div>
+
+      <div class="card disabled">
+        <img src="assets/buttons/youtube.png">
+        <span>YouTube (ongoing)</span>
+      </div>
+    </div>
+
+    <!-- STAT -->
+    <div class="stats">
+      <div>📋 Total Salin: <span id="copyCount">0</span></div>
+      <div>💸 Total Transaksi: <span id="trxCount">0</span></div>
+    </div>
+  </div>
+
+  <!-- POPUP QRIS -->
+  <div id="qrisModal" class="modal">
+    <div class="modal-content">
+      <img src="assets/buttons/qris.png">
+      <button onclick="closeQRIS()">Tutup</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
