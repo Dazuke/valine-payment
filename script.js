@@ -78,5 +78,8 @@ function closeQR() {
   qrModal.style.display = "none";
 }
 
+window.nextPay = nextPay;
+window.prevPay = prevPay;
+
 // Initialize
 updateUI();
