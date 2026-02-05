@@ -2,35 +2,35 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Valine • Payment</title>
+  <title>Valine Payment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background overlay biar ada efek 3D -->
+  <!-- blur depth layer -->
   <div class="bg-overlay"></div>
 
-  <div class="container">
-    <h1>Valine Payment</h1>
-    <p class="subtitle">Pilih metode pembayaran atau dukung lewat platform kami</p>
+  <main class="container">
+    <h1>Valine</h1>
+    <p class="subtitle">Payment & Official Links</p>
 
     <!-- PAYMENT -->
-    <div class="section">
+    <section>
       <h2>Payment</h2>
 
-      <button class="card" onclick="copyNumber('878-7274-8734')">
+      <button class="card" onclick="copyNumber('087872848734', this)">
         <img src="assets/dana.jpg">
         <span>📎 Salin Nomor Dana</span>
       </button>
 
-      <button class="card" onclick="copyNumber('878-7274-8734')">
+      <button class="card" onclick="copyNumber('087872848734', this)">
         <img src="assets/gopay.png">
         <span>📎 Salin Nomor GoPay</span>
       </button>
 
-      <button class="card" onclick="copyNumber('878-7274-8734')">
+      <button class="card" onclick="copyNumber('087872848734', this)">
         <img src="assets/shopepay.png">
         <span>📎 Salin Nomor ShopeePay</span>
       </button>
@@ -43,11 +43,11 @@
       <div class="note">
         Payment bank? Hubungi Valine langsung.
       </div>
-    </div>
+    </section>
 
-    <!-- LINK -->
-    <div class="section">
-      <h2>Komunitas & Media</h2>
+    <!-- LINKS -->
+    <section>
+      <h2>Community & Media</h2>
 
       <a class="card link" href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO?mode=gi_t" target="_blank">
         <img src="assets/whatsapp-group.png">
@@ -68,19 +68,19 @@
         <img src="assets/youtube.png">
         <span>YouTube (ongoing)</span>
       </div>
-    </div>
+    </section>
 
-    <!-- STAT -->
-    <div class="stats">
-      <div>📋 Total Salin: <span id="copyCount">0</span></div>
-      <div>💸 Total Transaksi: <span id="trxCount">0</span></div>
-    </div>
-  </div>
+    <!-- STATS -->
+    <section class="stats">
+      <div>📋 Total Salin: <b id="copyCount">0</b></div>
+      <div>💸 Total Transaksi: <b id="trxCount">0</b></div>
+    </section>
+  </main>
 
-  <!-- POPUP QRIS -->
+  <!-- QRIS MODAL -->
   <div id="qrisModal" class="modal">
     <div class="modal-content">
-      <img src="assets/qris.png">
+      <img src="assets/buttons/qris.png">
       <button onclick="closeQRIS()">Tutup</button>
     </div>
   </div>
