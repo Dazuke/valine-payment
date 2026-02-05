@@ -1,8 +1,8 @@
 const payments = [
   { name: "Dana", number: "087872848734", icon: "assets/dana.jpg" },
   { name: "Gopay", number: "087872848734", icon: "assets/gopay.png" },
-  { name: "ShopeePay", number: "087872848734", icon: "assets/shope.png" },
-  { name: "QRIS", number: "Scan QR", icon: "assets/qris.png" }
+  { name: "ShopeePay", number: "087872848734", icon: "assets/shopepay.png" },
+  { name: "QRIS", number: "Scan QR", icon: "assets/gopay.png" }
 ];
 
 let index = 0;
