@@ -1,21 +1,34 @@
-let copyCount = localStorage.getItem("copyCount") || 0;
-let trxCount = localStorage.getItem("trxCount") || 0;
+const NAMESPACE = "valine-payment";
+const COPY_KEY = "copy";
+const TRX_KEY = "trx";
 
-document.getElementById("copyCount").innerText = copyCount;
-document.getElementById("trxCount").innerText = trxCount;
+async function loadCount(key, el) {
+  const res = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${key}`);
+  const data = await res.json();
+  document.getElementById(el).innerText = data.value || 0;
+}
 
-function copyNumber(number) {
+async function hitCount(key, el) {
+  const res = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${key}`);
+  const data = await res.json();
+  document.getElementById(el).innerText = data.value;
+}
+
+function copyNumber(number, btn) {
+  const label = btn.querySelector("span");
+  const original = label.innerText;
+
   navigator.clipboard.writeText(number).then(() => {
-    copyCount++;
-    trxCount++;
+    hitCount(COPY_KEY, "copyCount");
+    hitCount(TRX_KEY, "trxCount");
 
-    localStorage.setItem("copyCount", copyCount);
-    localStorage.setItem("trxCount", trxCount);
+    btn.classList.add("copied");
+    label.innerText = "✔ Nomor Tersalin";
 
-    document.getElementById("copyCount").innerText = copyCount;
-    document.getElementById("trxCount").innerText = trxCount;
-
-    alert("Nomor berhasil disalin");
+    setTimeout(() => {
+      btn.classList.remove("copied");
+      label.innerText = original;
+    }, 1200);
   });
 }
 
@@ -26,3 +39,7 @@ function openQRIS() {
 function closeQRIS() {
   document.getElementById("qrisModal").style.display = "none";
 }
+
+/* initial load */
+loadCount(COPY_KEY, "copyCount");
+loadCount(TRX_KEY, "trxCount");
