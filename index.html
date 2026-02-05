@@ -5,6 +5,27 @@
   <title>Valine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+
+<!-- Firebase App (core) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<!-- Firebase Realtime Database -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+  // Konfigurasi project kamu
+const firebaseConfig = {
+  apiKey: "AIzaSyC98TkQYLipSzloE_St46XA4O1rv2rzT20",
+  authDomain: "valine-b06ad.firebaseapp.com",
+  projectId: "valine-b06ad",
+  storageBucket: "valine-b06ad.firebasestorage.app",
+  messagingSenderId: "188820674947",
+  appId: "1:188820674947:web:e7234f063c754f4104beb6",
+  measurementId: "G-6W3CPB70DF"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
 </head>
 <body>
 
