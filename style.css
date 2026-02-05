@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: system-ui, Arial, sans-serif;
 }
 
 body {
@@ -10,12 +10,13 @@ body {
   color: #fff;
 }
 
+/* depth blur */
 .bg-overlay {
   position: fixed;
   inset: 0;
   background: url("assets/overlay/depth-bg.png") center/cover no-repeat;
-  filter: blur(12px);
-  opacity: 0.4;
+  filter: blur(14px);
+  opacity: 0.45;
   z-index: -1;
 }
 
@@ -27,59 +28,94 @@ body {
 
 h1 {
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .subtitle {
   text-align: center;
   opacity: 0.8;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
 }
 
-.section {
-  margin-bottom: 25px;
+section {
+  margin-bottom: 28px;
 }
 
+h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+/* DARK GLASS CARD */
 .card {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(0,0,0,0.55);
-  border-radius: 14px;
+
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
   padding: 12px;
   margin-bottom: 12px;
+
   cursor: pointer;
-  text-decoration: none;
   color: white;
-  transition: transform .2s, background .2s;
+  text-decoration: none;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
 
 .card img {
   width: 40px;
   height: 40px;
+  object-fit: contain;
 }
 
 .card:hover {
-  transform: scale(1.02);
-  background: rgba(0,0,0,0.7);
+  transform: scale(1.035);
+  background: rgba(30, 30, 30, 0.65);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 
 .card.disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
+}
+
+/* COPY ANIMATION */
+.card.copied {
+  background: rgba(0, 140, 90, 0.65);
+  animation: pulse .35s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
 }
 
 .note {
   font-size: 13px;
   opacity: 0.8;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
+/* STATS GLASS */
 .stats {
-  background: rgba(0,0,0,0.6);
-  border-radius: 12px;
-  padding: 12px;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 16px;
+  padding: 14px;
   text-align: center;
   font-size: 14px;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,0.4);
 }
 
 /* QRIS MODAL */
@@ -87,7 +123,7 @@ h1 {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   justify-content: center;
   align-items: center;
 }
@@ -95,17 +131,17 @@ h1 {
 .modal-content {
   background: #111;
   padding: 20px;
-  border-radius: 14px;
+  border-radius: 16px;
   text-align: center;
 }
 
 .modal-content img {
   width: 220px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .modal-content button {
-  padding: 8px 16px;
+  padding: 8px 18px;
+  border-radius: 10px;
   border: none;
-  border-radius: 8px;
 }
