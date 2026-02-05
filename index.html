@@ -10,55 +10,43 @@
 
 <div class="bg"></div>
 
-<div class="app">
+<div class="card">
   <h1>VALINE</h1>
-  <p>Payment & Official Links</p>
+  <p class="subtitle">Payment & Official Links</p>
 
-  <!-- SLIDER -->
-  <div class="slider">
-    <div class="track" id="track">
+  <div class="counter">
+    <span>📎 Disalin: <b id="copyCount">0</b></span>
+    <span>💸 Transaksi: <b id="trxCount">0</b></span>
+  </div>
 
-      <div class="card">
-        <img src="assets/dana.png">
-        <button onclick="copyPay()">📎 Salin DANA</button>
-      </div>
+  <div class="payment">
+    <img id="payIcon" src="assets/dana.jpg">
+    <p id="payName">Dana</p>
+    <p id="payNumber">087872848734</p>
 
-      <div class="card">
-        <img src="assets/shopepay.png">
-        <button onclick="copyPay()">📎 Salin ShopeePay</button>
-      </div>
+    <button id="copyBtn">📎 Salin Nomor</button>
 
-      <div class="card">
-        <img src="assets/gopay.png">
-        <button onclick="copyPay()">📎 Salin GoPay</button>
-      </div>
-
-      <div class="card">
-        <img src="assets/qris.png">
-        <button onclick="countTrx()">Scan QRIS</button>
-      </div>
-
+    <div class="switch">
+      <button onclick="prevPay()">‹</button>
+      <button onclick="nextPay()">›</button>
     </div>
   </div>
 
-  <!-- COUNTER -->
-  <div class="counter">
-    <div><span id="copy">0</span><small>Salin</small></div>
-    <div><span id="trx">0</span><small>Transaksi</small></div>
-  </div>
-
-  <!-- ICON MENU -->
-  <div class="menu">
+  <h3>Follow Us</h3>
+  <div class="social">
     <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank">
-      <img src="assets/group.png"><span>Group</span>
+      <img src="assets/whatsapp.png"><span>Group</span>
     </a>
     <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank">
-      <img src="assets/channel.png"><span>Saluran</span>
+      <img src="assets/whatsapp.png"><span>Saluran</span>
     </a>
-    <a class="off"><img src="assets/tiktok.png"><span>TikTok</span></a>
-    <a class="off"><img src="assets/youtube.png"><span>YouTube</span></a>
+    <div class="disabled">
+      <img src="assets/tiktok.png"><span>TikTok<br>Maintenance</span>
+    </div>
+    <div class="disabled">
+      <img src="assets/youtube.png"><span>YouTube<br>Maintenance</span>
+    </div>
   </div>
-
 </div>
 
 <script src="script.js"></script>
