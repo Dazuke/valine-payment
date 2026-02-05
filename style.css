@@ -95,3 +95,31 @@ button {
 .disabled {
   opacity: 0.5;
 }
+.qr-hint {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.qr-modal img {
+  width: 80%;
+  max-width: 320px;
+  border-radius: 16px;
+}
+
+.qr-modal p {
+  margin-top: 12px;
+  font-size: 14px;
+  opacity: 0.8;
+}
