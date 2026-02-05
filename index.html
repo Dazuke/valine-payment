@@ -1,90 +1,44 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Valine Payment</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="Valine payment">
+  <div class="payment-track" id="paymentTrack">
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- blur depth layer -->
-  <div class="bg-overlay"></div>
-
-  <main class="container">
-    <h1>Valine</h1>
-    <p class="subtitle">Payment & Official Links</p>
-
-    <!-- PAYMENT -->
-    <section>
-      <h2>Payment</h2>
-
-      <button class="card" onclick="copyNumber('087872848734', this)">
-        <img src="assets/dana.jpg">
-        <span>📎 Salin Nomor Dana</span>
-      </button>
-
-      <button class="card" onclick="copyNumber('087872848734', this)">
-        <img src="assets/gopay.png">
-        <span>📎 Salin Nomor GoPay</span>
-      </button>
-
-      <button class="card" onclick="copyNumber('087872848734', this)">
-        <img src="assets/shopepay.png">
-        <span>📎 Salin Nomor ShopeePay</span>
-      </button>
-
-      <button class="card" onclick="openQRIS()">
-        <img src="assets/qris.png">
-        <span>Lihat QRIS</span>
-      </button>
-
-      <div class="note">
-        Payment bank? Hubungi Valine langsung.
-      </div>
-    </section>
-
-    <!-- LINKS -->
-    <section>
-      <h2>Community & Media</h2>
-
-      <a class="card link" href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO?mode=gi_t" target="_blank">
-        <img src="assets/whatsapp-group.png">
-        <span>WhatsApp Group</span>
-      </a>
-
-      <a class="card link" href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank">
-        <img src="assets/whatsapp-channel.png">
-        <span>WhatsApp Channel</span>
-      </a>
-
-      <div class="card disabled">
-        <img src="assets/tiktok.png">
-        <span>TikTok (ongoing)</span>
-      </div>
-
-      <div class="card disabled">
-        <img src="assets/youtube.png">
-        <span>YouTube (ongoing)</span>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="stats">
-      <div>📋 Total Salin: <b id="copyCount">0</b></div>
-      <div>💸 Total Transaksi: <b id="trxCount">0</b></div>
-    </section>
-  </main>
-
-  <!-- QRIS MODAL -->
-  <div id="qrisModal" class="modal">
-    <div class="modal-content">
-      <img src="assets/buttons/qris.png">
-      <button onclick="closeQRIS()">Tutup</button>
+    <!-- CLONE LAST -->
+    <div class="payment-card">
+      <img src="assets/qris.png">
+      <h3>QRIS</h3>
+      <button onclick="openQRIS()">Lihat QR</button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- REAL SLIDES -->
+    <div class="payment-card">
+      <img src="assets/dana.jpg">
+      <h3>DANA</h3>
+      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+    </div>
+
+    <div class="payment-card">
+      <img src="assets/shopepay.png">
+      <h3>ShopeePay</h3>
+      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+    </div>
+
+    <div class="payment-card">
+      <img src="assets/gopay.png">
+      <h3>GoPay</h3>
+      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+    </div>
+
+    <div class="payment-card">
+      <img src="assets/qris.png">
+      <h3>QRIS</h3>
+      <button onclick="openQRIS()">Lihat QR</button>
+    </div>
+
+    <!-- CLONE FIRST -->
+    <div class="payment-card">
+      <img src="assets/dana.jpg">
+      <h3>DANA</h3>
+      <button onclick="copyNumber('087872848734', this)">📎 Salin Nomor</button>
+    </div>
+
+  </div>
+</div>
