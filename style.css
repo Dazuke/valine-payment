@@ -1,33 +1,56 @@
+/* ==================================
+   Reset & Base
+================================== */
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  height: 100vh;
-  color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  color: #fff;
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* ==================================
+   Background
+================================== */
 .bg {
   position: fixed;
   inset: 0;
-  background: url("assets/bg/wallpaper.png") center/cover no-repeat;
-  filter: blur(2px);
+  background: url('assets/bg/wallpaper.png') no-repeat center center/cover;
+  filter: blur(4px);
+  z-index: -1;
 }
 
+/* ==================================
+   Card / Container
+================================== */
 .card {
-  position: relative;
-  max-width: 380px;
-  margin: 40px auto;
-  padding: 24px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
   border-radius: 24px;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(12px);
+  padding: 24px;
+  width: 320px;
+  max-width: 90%;
   text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
 }
 
-.subtitle {
+.card h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.card .subtitle {
+  font-size: 14px;
   opacity: 0.8;
   margin-bottom: 12px;
 }
@@ -35,72 +58,114 @@ body {
 .counter {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
   margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* ==================================
+   Payment Section
+================================== */
+.payment {
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 16px;
+  margin-bottom: 18px;
 }
 
 .payment img {
-  width: 64px;
-  margin: 10px 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  margin-bottom: 8px;
 }
 
-#payNumber {
-  font-size: 18px;
-  letter-spacing: 1px;
+.payment #payName {
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
-button {
-  margin-top: 10px;
-  padding: 10px 18px;
-  border-radius: 20px;
+.payment #payNumber {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.payment button {
+  background: #1abc9c;
+  color: #fff;
   border: none;
-  background: #5b7cff;
-  color: white;
-  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.switch {
-  margin-top: 10px;
+.payment button:hover {
+  background: #16a085;
 }
 
-.switch button {
-  background: transparent;
-  font-size: 24px;
-}
-
-.social {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-.social a,
-.social .disabled {
-  background: rgba(0,0,0,0.3);
-  padding: 10px;
-  border-radius: 14px;
+.payment .switch {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  text-decoration: none;
+  justify-content: space-between;
+  margin-top: 8px;
 }
 
-.social img {
-  width: 36px;
-  margin-bottom: 6px;
+.payment .switch button {
+  width: 48%;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
-.disabled {
-  opacity: 0.5;
-}
 .qr-hint {
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.8;
   margin-top: 6px;
 }
 
+/* ==================================
+   Social 2x2
+================================== */
+.social {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.social a, .social .disabled {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 16px;
+  transition: 0.2s;
+}
+
+.social a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.social img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+}
+
+.social span {
+  font-size: 12px;
+  text-align: center;
+}
+
+.social .disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==================================
+   QR Modal
+================================== */
 .qr-modal {
   position: fixed;
   inset: 0;
