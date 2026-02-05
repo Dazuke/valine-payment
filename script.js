@@ -1,27 +1,46 @@
-const API = "https://api.countapi.xyz";
-const NS = "valine";
-const PAY = "copy";
-const TRX = "trx";
+const payments = [
+  { name: "Dana", number: "087872848734", icon: "assets/dana.jpg" },
+  { name: "Gopay", number: "087872848734", icon: "assets/gopay.png" },
+  { name: "ShopeePay", number: "087872848734", icon: "assets/shope.png" },
+  { name: "QRIS", number: "Scan QR", icon: "assets/qris.png" }
+];
 
-const copyEl = document.getElementById("copy");
-const trxEl = document.getElementById("trx");
+let index = 0;
+let copyCount = localStorage.getItem("copy") || 0;
+let trxCount = localStorage.getItem("trx") || 0;
 
-fetch(`${API}/hit/${NS}/${PAY}`).then(r=>r.json()).then(d=>copyEl.innerText=d.value);
-fetch(`${API}/hit/${NS}/${TRX}`).then(r=>r.json()).then(d=>trxEl.innerText=d.value-1);
+updateUI();
 
-function copyPay(){
-  navigator.clipboard.writeText("087872848734");
-  fetch(`${API}/hit/${NS}/${PAY}`).then(r=>r.json()).then(d=>copyEl.innerText=d.value);
+function updateUI() {
+  const p = payments[index];
+  payIcon.src = p.icon;
+  payName.textContent = p.name;
+  payNumber.textContent = p.number;
+  copyCountEl();
 }
 
-function countTrx(){
-  fetch(`${API}/hit/${NS}/${TRX}`).then(r=>r.json()).then(d=>trxEl.innerText=d.value);
+function nextPay() {
+  index = (index + 1) % payments.length;
+  updateUI();
 }
 
-let i = 0;
-const track = document.getElementById("track");
+function prevPay() {
+  index = (index - 1 + payments.length) % payments.length;
+  updateUI();
+}
 
-setInterval(()=>{
-  i = (i+1) % 4;
-  track.style.transform = `translateX(${-i*100}%)`;
-}, 3000);
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(payments[index].number);
+  copyCount++;
+  trxCount++;
+  localStorage.setItem("copy", copyCount);
+  localStorage.setItem("trx", trxCount);
+  copyCountEl();
+  copyBtn.textContent = "✅ Tersalin";
+  setTimeout(() => copyBtn.textContent = "📎 Salin Nomor", 1200);
+};
+
+function copyCountEl() {
+  document.getElementById("copyCount").textContent = copyCount;
+  document.getElementById("trxCount").textContent = trxCount;
+}
