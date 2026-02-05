@@ -5,6 +5,10 @@ const payments = [
   { name: "QRIS", number: "Scan QR", icon: "assets/gopay.png" }
 ];
 
+const copyBtn = document.getElementById("copyBtn");
+const copyCountEl = document.getElementById("copyCount");
+const trxCountEl = document.getElementById("trxCount");
+
 let index = 0;
 let copyCount = localStorage.getItem("copy") || 0;
 let trxCount = localStorage.getItem("trx") || 0;
@@ -51,9 +55,6 @@ function prevPay() {
   updateUI();
 }
 
-const copyBtn = document.getElementById("copyBtn");
-const copyCountEl = document.getElementById("copyCount");
-const trxCountEl = document.getElementById("trxCount");
 
 // Listen realtime database
 database.ref("copyCount").on("value", snap => {
@@ -67,11 +68,7 @@ database.ref("trxCount").on("value", snap => {
 // Update database saat tombol salin diklik
 copyBtn.onclick = () => {
   navigator.clipboard.writeText(payments[index].number);
-  
-  // Increment copy count
   database.ref("copyCount").transaction(current => (current || 0) + 1);
-  
-  // Increment trx count
   database.ref("trxCount").transaction(current => (current || 0) + 1);
   
   copyBtn.textContent = "✅ Tersalin";
