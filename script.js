@@ -1,62 +1,79 @@
-const qrImg = document.getElementById('qris-img');
-const modal = document.getElementById('qrModal');
-const modalImg = document.getElementById('modal-img');
-const adsSlide = document.querySelector('.ads-slide');
-const adsImages = document.querySelectorAll('.ads-slide img');
-const paymentSlide = document.querySelector('.payment-slide');
-const paymentCards = document.querySelectorAll('.payment-card');
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-// === Ads auto-slide ===
+// Payment data
+const payments = [
+  { name:"Dana", number:"8787-2848-734", icon:"assets/dana.jpg" },
+  { name:"Gopay", number:"8787-2848-734", icon:"assets/gopay.png" },
+  { name:"ShopeePay", number:"8787-2848-734", icon:"assets/shopepay.png" },
+  { name:"QRIS", number:"Scan QR", icon:"assets/qris.png" }
+];
 
-let adIndex = 0;
+const db = getDatabase();
+let index = 0;
 
-function showNextAd() {
-  adIndex++;
-  if(adIndex >= adsImages.length) adIndex = 0;
-  adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
+// DOM
+const payIcon = document.getElementById("payIcon");
+const payName = document.getElementById("payName");
+const payNumber = document.getElementById("payNumber");
+const copyBtn = document.getElementById("copyBtn");
+const copyCountEl = document.getElementById("copyCount");
+const socialClickE1 = document.getElementById("socialClick");
+const qrModal = document.getElementById("qrModal");
+const qrBig = document.getElementById("qrBig");
+
+// Payment update
+function updateUI() {
+  const p = payments[index];
+  payIcon.src = p.icon;
+  payName.textContent = p.name;
+
+  if(p.name==="QRIS"){
+    copyBtn.style.display="none";
+    payNumber.innerHTML='<span class="qr-hint">Klik QR untuk zoom</span>';
+    payIcon.style.cursor="pointer";
+    payIcon.onclick=()=>openQR(p.icon);
+  } else {
+    copyBtn.style.display="inline-block";
+    payNumber.textContent=p.number;
+    payIcon.onclick=null;
+  }
 }
 
-let adInterval = setInterval(showNextAd, 3000);
+function nextPay(){ index=(index+1)%payments.length; updateUI(); }
+function prevPay(){ index=(index-1+payments.length)%payments.length; updateUI(); }
 
-const adsContainer = document.querySelector('.ads-container.no-glass');
-adsContainer.addEventListener('mouseenter', () => clearInterval(adInterval));
-adsContainer.addEventListener('mouseleave', () => adInterval = setInterval(showNextAd, 3000));
-
-// === Payment slider auto-slide (optional) ===
-
-let paymentIndex = 0;
-
-function updatePaymentPosition() {
-  const offset = -paymentIndex * 140; // 120px + 2*10px margin
-  paymentSlide.style.transform = `translateX(${offset}px)`;
-}
-
-function nextPayment() {
-  paymentIndex++;
-  if(paymentIndex >= paymentCards.length) paymentIndex = 0;
-  updatePaymentPosition();
-}
-
-function prevPayment() {
-  paymentIndex--;
-  if(paymentIndex < 0) paymentIndex = paymentCards.length - 1;
-  updatePaymentPosition();
-}
-
-// Salin nomor
-function copyNumber(number) {
-  navigator.clipboard.writeText(number)
-    .then(() => {
-      alert('Nomor berhasil disalin: ' + number);
-      incrementCopy(); // update Firebase
-    });
-}
-// qriss zooom
-qrImg.onclick = () => {
-  modal.style.display = "flex";
-  modalImg.src = qrImg.src;
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(payments[index].number);
+  runTransaction(ref(db,'copyCount'),current=>(current||0)+1);
+  copyBtn.textContent="✅ Tersalin";
+  setTimeout(()=>copyBtn.textContent="📎 Salin Nomor",1200);
 };
 
-function closeModal() {
-  modal.style.display = "none";
-}
+// Social click
+function incrementSocial(){ runTransaction(ref(db,'socialClick'),current=>(current||0)+1); }
+
+// QR Modal
+function openQR(src){ qrBig.src=src; qrModal.style.display="flex"; }
+function closeQR(){ qrModal.style.display="none"; }
+
+window.nextPay=nextPay;
+window.prevPay=prevPay;
+window.openQR=openQR;
+window.closeQR=closeQR;
+
+// Initialize
+updateUI();
+
+// Firebase Realtime count
+onValue(ref(db,'copyCount'),snap=>{ copyCountEl.textContent=snap.val()||0; });
+onValue(ref(db,'socialClick'),snap=>{ socialClickE1.textContent=snap.val()||0; });
+
+// Ads slider
+const adsSlide = document.querySelector('.ads-slide');
+const adsImages = document.querySelectorAll('.ads-slide img');
+let adIndex=0;
+function showNextAd(){ adIndex++; if(adIndex>=adsImages.length) adIndex=0; adsSlide.style.transform=`translateX(${-adIndex*100}%)`; }
+let adInterval=setInterval(showNextAd,3000);
+const adsContainer=document.querySelector('.ads-container');
+adsContainer.addEventListener('mouseenter',()=>clearInterval(adInterval));
+adsContainer.addEventListener('mouseleave',()=>adInterval=setInterval(showNextAd,3000));
