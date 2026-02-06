@@ -1,6 +1,13 @@
-// === Ads auto-slide ===
+const qrImg = document.getElementById('qris-img');
+const modal = document.getElementById('qrModal');
+const modalImg = document.getElementById('modal-img');
 const adsSlide = document.querySelector('.ads-slide');
 const adsImages = document.querySelectorAll('.ads-slide img');
+const paymentSlide = document.querySelector('.payment-slide');
+const paymentCards = document.querySelectorAll('.payment-card');
+
+// === Ads auto-slide ===
+
 let adIndex = 0;
 
 function showNextAd() {
@@ -16,13 +23,40 @@ adsContainer.addEventListener('mouseenter', () => clearInterval(adInterval));
 adsContainer.addEventListener('mouseleave', () => adInterval = setInterval(showNextAd, 3000));
 
 // === Payment slider auto-slide (optional) ===
-const paymentSlide = document.querySelector('.payment-slide');
-const paymentImages = document.querySelectorAll('.payment-slide img');
+
 let paymentIndex = 0;
 
-function showNextPayment() {
-  paymentIndex++;
-  if(paymentIndex >= paymentImages.length) paymentIndex = 0;
-  paymentSlide.style.transform = `translateX(${-paymentIndex * 100}%)`;
+function updatePaymentPosition() {
+  const offset = -paymentIndex * 140; // 120px + 2*10px margin
+  paymentSlide.style.transform = `translateX(${offset}px)`;
 }
-setInterval(showNextPayment, 3000);
+
+function nextPayment() {
+  paymentIndex++;
+  if(paymentIndex >= paymentCards.length) paymentIndex = 0;
+  updatePaymentPosition();
+}
+
+function prevPayment() {
+  paymentIndex--;
+  if(paymentIndex < 0) paymentIndex = paymentCards.length - 1;
+  updatePaymentPosition();
+}
+
+// Salin nomor
+function copyNumber(number) {
+  navigator.clipboard.writeText(number)
+    .then(() => {
+      alert('Nomor berhasil disalin: ' + number);
+      incrementCopy(); // update Firebase
+    });
+}
+// qriss zooom
+qrImg.onclick = () => {
+  modal.style.display = "flex";
+  modalImg.src = qrImg.src;
+};
+
+function closeModal() {
+  modal.style.display = "none";
+}
