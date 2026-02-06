@@ -35,13 +35,14 @@ body {
  ==================================== */
 .ads-container.no-glass {
   width: 100%;
-  max-width: 500px;       /* sesuaikan lebar */
-  margin: 20px auto 40px; /* 20px atas, 40px bawah */
+  max-width: 500px;
+  margin: 20px auto 40px;
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  background: none;       /* hilangkan kaca */
+  background: none;
   position: relative;
+  z-index: 1000;  /* pastikan di atas kaca / blur */
 }
 
 .ads-slide {
