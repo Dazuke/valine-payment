@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- Slider Iklan -->
+<!-- Iklan di atas -->
 <div class="ads-container no-glass">
   <div class="ads-slide">
     <img src="assets/iklan1.jpg" alt="Iklan 1">
@@ -28,21 +28,21 @@
     <span>🌐 Klik Social: <b id="socialClick">0</b></span>
   </div>
 
-  <!-- Payment Section -->
+  <!-- Payment Manual Slide -->
   <div class="payment">
-    <img id="payIcon" src="assets/dana.jpg">
+    <img id="payIcon" src="assets/dana.jpg" alt="Payment Icon">
     <p id="payName">Dana</p>
-    <p id="payNumber">878-7284-8734</p>
+    <p id="payNumber">8787-2848-734</p>
 
     <button id="copyBtn">📎 Salin Nomor</button>
     <div class="switch">
       <button onclick="prevPay()"> <~ Geser Kiri</button>
       <button onclick="nextPay()"> Geser Kanan ~></button>
     </div>
+    <p class="qr-hint" id="qrHint"></p>
   </div>
 
   <!-- Social 2x2 -->
-  <h3>Jangan Lupa Support nyaa!!</h3>
   <div class="social">
     <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank" onclick="incrementSocial()">
       <img src="assets/whatsapp-group.png"><span>Group</span>
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<!-- QR Zoom Modal -->
+<!-- QR Modal -->
 <div id="qrModal" class="qr-modal" onclick="closeQR()">
   <img id="qrBig" src="">
   <p>Klik di mana saja untuk menutup</p>
@@ -83,6 +83,7 @@
 
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
+  window.database = database; // supaya bisa dipakai di script.js
 </script>
 
 <script src="script.js" type="module"></script>
