@@ -1,40 +1,80 @@
-/* Reset & Base */
-* { margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif; }
-body { min-height:100vh; display:flex; justify-content:center; align-items:center; background:#222; color:#fff; position:relative; overflow-x:hidden; }
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-/* Background */
-.bg { position:fixed; inset:0; background:url('assets/bg/wallpaper.png') no-repeat center/cover; filter:blur(4px); z-index:-1; }
+const payments = [
+  { name: "Dana", number: "8787-2848-734", icon: "assets/dana.jpg" },
+  { name: "Gopay", number: "8787-2848-734", icon: "assets/gopay.png" },
+  { name: "ShopeePay", number: "8787-2848-734", icon: "assets/shopepay.png" },
+  { name: "QRIS", number: "Scan QR", icon: "assets/qris.png" }
+];
 
-/* Ads */
-.ads-container.no-glass { width:90%; max-width:480px; height:180px; margin:20px auto 10px; overflow:hidden; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.2); background:none; position:relative; z-index:1000; }
-.ads-slide { display:flex; transition:transform 0.5s ease-in-out; }
-.ads-slide img { width:100%; height:100%; object-fit:cover; border-radius:16px; }
+const db = window.database;
 
-/* Card / Container */
-.card { background: rgba(0,0,0,0.4); backdrop-filter:blur(10px); border-radius:24px; padding:24px; width:320px; max-width:90%; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.6); }
-.card h1 { font-size:28px; margin-bottom:6px; }
-.card .subtitle { font-size:14px; opacity:0.8; margin-bottom:12px; }
-.counter { display:flex; justify-content:space-between; margin-bottom:16px; font-size:14px; }
+let index = 0;
 
-/* Payment */
-.payment { position:relative; background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; margin-bottom:18px; }
-.payment img { width:80px; height:80px; border-radius:16px; margin-bottom:8px; }
-.payment #payName { font-weight:bold; margin-bottom:4px; }
-.payment #payNumber { font-size:14px; margin-bottom:8px; }
-.payment button { background:#1abc9c; color:#fff; border:none; padding:6px 12px; border-radius:12px; cursor:pointer; transition:0.2s; }
-.payment button:hover { background:#16a085; }
-.payment .switch { display:flex; justify-content:space-between; margin-top:8px; }
-.payment .switch button { width:48%; background: rgba(255,255,255,0.1); color:#fff; }
+// DOM
+const payIcon = document.getElementById("payIcon");
+const payName = document.getElementById("payName");
+const payNumber = document.getElementById("payNumber");
+const copyBtn = document.getElementById("copyBtn");
+const copyCountEl = document.getElementById("copyCount");
+const socialClickEl = document.getElementById("socialClick");
+const qrModal = document.getElementById("qrModal");
+const qrBig = document.getElementById("qrBig");
 
-/* Social 2x2 */
-.social { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
-.social a, .social .disabled { display:flex; flex-direction:column; align-items:center; text-decoration:none; background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; transition:0.2s; }
-.social a:hover { background: rgba(255,255,255,0.15); }
-.social img { width:40px; height:40px; margin-bottom:6px; }
-.social span { font-size:12px; text-align:center; }
-.social .disabled { opacity:0.6; cursor:not-allowed; }
+const adsSlide = document.querySelector('.ads-slide');
+const adsImages = document.querySelectorAll('.ads-slide img');
+let adIndex = 0;
 
-/* QR Modal */
-.qr-modal { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; flex-direction:column; z-index:999; }
-.qr-modal img { width:80%; max-width:320px; border-radius:16px; }
-.qr-modal p { margin-top:12px; font-size:14px; opacity:0.8; }
+function showNextAd() {
+  adIndex = (adIndex + 1) % adsImages.length;
+  adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
+}
+let adInterval = setInterval(showNextAd, 3000);
+const adsContainer = document.querySelector('.ads-container');
+adsContainer.addEventListener('mouseenter', () => clearInterval(adInterval));
+adsContainer.addEventListener('mouseleave', () => adInterval = setInterval(showNextAd, 3000));
+
+// Realtime count
+onValue(ref(db, 'copyCount'), snap => copyCountEl.textContent = snap.val() || 0);
+onValue(ref(db, 'socialClick'), snap => socialClickEl.textContent = snap.val() || 0);
+
+// Slider payment
+function updateUI() {
+  const p = payments[index];
+  payIcon.src = p.icon;
+  payName.textContent = p.name;
+  if (p.name === "QRIS") {
+    copyBtn.style.display = "none";
+    payNumber.innerHTML = `<span class="qr-hint">Klik QR untuk zoom</span>`;
+    payIcon.style.cursor = "pointer";
+    payIcon.onclick = () => openQR(p.icon);
+  } else {
+    copyBtn.style.display = "inline-block";
+    payNumber.textContent = p.number;
+    payIcon.onclick = null;
+  }
+}
+function nextPay() { index = (index + 1) % payments.length; updateUI(); }
+function prevPay() { index = (index - 1 + payments.length) % payments.length; updateUI(); }
+
+// Copy button
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(payments[index].number);
+  runTransaction(ref(db, 'copyCount'), current => (current||0)+1);
+  copyBtn.textContent = "✅ Tersalin";
+  setTimeout(()=>copyBtn.textContent="📎 Salin Nomor",1200);
+};
+
+// Social click
+window.incrementSocial = () => runTransaction(ref(db,'socialClick'), current => (current||0)+1);
+
+// QR Modal
+window.openQR = (src) => { qrBig.src = src; qrModal.style.display="flex"; }
+window.closeQR = () => qrModal.style.display="none";
+
+// Payment buttons
+window.nextPay = nextPay;
+window.prevPay = prevPay;
+
+// Init
+updateUI();
