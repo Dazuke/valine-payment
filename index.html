@@ -1,10 +1,69 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valine Project</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Slider Iklan -->
+<div class="ads-container no-glass">
+  <div class="ads-slide">
+    <img src="assets/iklan1.jpg" alt="Iklan 1">
+    <img src="assets/iklan2.jpg" alt="Iklan 2">
+    <img src="assets/iklan3.jpg" alt="Iklan 3">
+  </div>
+</div>
+
+<div class="bg"></div>
+
+<div class="card">
+  <h1>VALINE</h1>
+  <p class="subtitle">Payment & Official Links</p>
+
+  <div class="counter">
+    <span>📎 Salin Nomor: <b id="copyCount">0</b></span>
+    <span>🌐 Klik Social: <b id="socialClick">0</b></span>
+  </div>
+
+  <!-- Payment Section -->
+  <div class="payment">
+    <img id="payIcon" src="assets/dana.jpg">
+    <p id="payName">Dana</p>
+    <p id="payNumber">878-7284-8734</p>
+
+    <button id="copyBtn">📎 Salin Nomor</button>
+    <div class="switch">
+      <button onclick="prevPay()"> <~ Geser Kiri</button>
+      <button onclick="nextPay()"> Geser Kanan ~></button>
+    </div>
+  </div>
+
+  <!-- Social 2x2 -->
+  <h3>Jangan Lupa Support nyaa!!</h3>
+  <div class="social">
+    <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank" onclick="incrementSocial()">
+      <img src="assets/whatsapp-group.png"><span>Group</span>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank" onclick="incrementSocial()">
+      <img src="assets/whatsapp-channel.png"><span>Saluran</span>
+    </a>
+    <div class="disabled">
+      <img src="assets/tiktok.png"><span>TikTok<br>Maintenance</span>
+    </div>
+    <div class="disabled">
+      <img src="assets/youtube.png"><span>YouTube<br>Maintenance</span>
+    </div>
+  </div>
+</div>
+
+<!-- QR Zoom Modal -->
+<div id="qrModal" class="qr-modal" onclick="closeQR()">
+  <img id="qrBig" src="">
+  <p>Klik di mana saja untuk menutup</p>
+</div>
 
 <!-- Firebase SDK -->
 <script type="module">
@@ -23,82 +82,9 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const db = getDatabase();
-
-  // Realtime count
-  onValue(ref(db, 'copyCount'), snap => {
-    document.getElementById("copyCount").textContent = snap.val() || 0;
-  });
-  onValue(ref(db, 'socialClick'), snap => {
-    document.getElementById("socialClick").textContent = snap.val() || 0;
-  });
-
-  // Increment functions
-  window.incrementCopy = () => {
-    runTransaction(ref(db, 'copyCount'), current => (current || 0) + 1);
-  };
-  window.incrementSocial = () => {
-    runTransaction(ref(db, 'socialClick'), current => (current || 0) + 1);
-  };
+  const database = getDatabase(app);
 </script>
-</head>
-<body>
 
-<!-- Slider Iklan di atas -->
-<div class="ads-container no-glass">
-  <div class="ads-slide">
-    <img src="assets/iklan1.jpg" alt="Iklan 1">
-    <img src="assets/iklan2.jpg" alt="Iklan 2">
-    <img src="assets/iklan3.jpg" alt="Iklan 3">
-  </div>
-</div>
-
-<!-- Payment Slider -->
-<div class="payment-container glass">
-  <div class="payment-slide">
-    <img src="assets/dana.jpg" class="payment-icon" alt="Dana" onclick="incrementCopy()">
-    <img src="assets/gopay.png" class="payment-icon" alt="Gopay" onclick="incrementCopy()">
-    <img src="assets/shope.png" class="payment-icon" alt="ShopeePay" onclick="incrementCopy()">
-    <img src="assets/qris.png" class="payment-icon" alt="QRIS" onclick="incrementCopy()">
-  </div>
-</div>
-<!-- qris -->
-  <div class="payment-card">
-  <img src="assets/qris.png" alt="QRIS" id="qris-img">
-  <div class="payment-number">Klik untuk zoom</div>
-</div>
-
-<!-- Modal zoom -->
-<div id="qrModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modal-img">
-</div>
-<!-- Count -->
-<div class="stats glass">
-  <div>Jumlah salin nomor: <span id="copyCount">0</span></div>
-  <div>Jumlah klik social: <span id="socialClick">0</span></div>
-</div>
-
-<!-- Social / Follow Us -->
-<div class="social-container glass">
-  <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank" onclick="incrementSocial()">
-    <img src="assets/whatsapp-group.png" class="social-icon" alt="WA Group">
-    <span>WhatsApp Group</span>
-  </a>
-  <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank" onclick="incrementSocial()">
-    <img src="assets/whatsapp-channel.png" class="social-icon" alt="WA Saluran">
-    <span>WhatsApp Saluran</span>
-  </a>
-  <a href="#" target="_blank" onclick="incrementSocial()">
-    <img src="assets/tiktok.png" class="social-icon" alt="TikTok">
-    <span>TikTok (Maintenance)</span>
-  </a>
-  <a href="#" target="_blank" onclick="incrementSocial()">
-    <img src="assets/youtube.png" class="social-icon" alt="YouTube">
-    <span>YouTube (Maintenance)</span>
-  </a>
-</div>
-
-<script type="module" src="script.js"></script>
+<script src="script.js" type="module"></script>
 </body>
 </html>
