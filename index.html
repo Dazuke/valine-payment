@@ -62,7 +62,17 @@
     <img src="assets/qris.png" class="payment-icon" alt="QRIS" onclick="incrementCopy()">
   </div>
 </div>
+<!-- qris -->
+  <div class="payment-card">
+  <img src="assets/qris.png" alt="QRIS" id="qris-img">
+  <div class="payment-number">Klik untuk zoom</div>
+</div>
 
+<!-- Modal zoom -->
+<div id="qrModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modal-img">
+</div>
 <!-- Count -->
 <div class="stats glass">
   <div>Jumlah salin nomor: <span id="copyCount">0</span></div>
