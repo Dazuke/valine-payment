@@ -1,31 +1,21 @@
-/* Reset & Base */
-* { margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif; }
-body { min-height:100vh; display:flex; justify-content:center; align-items:center; background:#222; color:#fff; position:relative; overflow-x:hidden; }
-
-/* Background */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+body { min-height:100vh; display:flex; flex-direction:column; align-items:center; background:#222; color:#fff; overflow-x:hidden; }
 .bg { position:fixed; inset:0; background:url('assets/bg/wallpaper.png') no-repeat center/cover; filter:blur(4px); z-index:-1; }
 
-/* Ads */
-.ads-container.no-glass {
-  width: 90%;
-  max-width: 480px;
-  height: 180px;
-  margin: 20px auto 20px; /* auto biar di tengah */
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  position: relative;
-  z-index: 1000;
-}
-/* Card / Container */
-.card { background: rgba(0,0,0,0.4); backdrop-filter:blur(10px); border-radius:24px; padding:24px; width:320px; max-width:90%; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.6); }
+/* Iklan di atas */
+.ads-container.no-glass { width:90%; max-width:480px; height:180px; margin:20px auto; overflow:hidden; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.2); position:relative; z-index:1000; }
+.ads-slide { display:flex; transition: transform 0.5s ease-in-out; height:100%; }
+.ads-slide img { width:100%; flex-shrink:0; object-fit:cover; border-radius:16px; }
+
+/* Card */
+.card { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border-radius:24px; padding:32px 24px; width:320px; max-width:90%; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.6); margin-bottom:40px; }
 .card h1 { font-size:28px; margin-bottom:6px; }
 .card .subtitle { font-size:14px; opacity:0.8; margin-bottom:12px; }
 .counter { display:flex; justify-content:space-between; margin-bottom:16px; font-size:14px; }
 
 /* Payment */
-.payment { position:relative; background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; margin-bottom:18px; }
-.payment img { width:80px; height:80px; border-radius:16px; margin-bottom:8px; }
+.payment { background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; margin-bottom:18px; }
+.payment img { width:80px; height:80px; border-radius:16px; margin-bottom:8px; cursor:pointer; }
 .payment #payName { font-weight:bold; margin-bottom:4px; }
 .payment #payNumber { font-size:14px; margin-bottom:8px; }
 .payment button { background:#1abc9c; color:#fff; border:none; padding:6px 12px; border-radius:12px; cursor:pointer; transition:0.2s; }
