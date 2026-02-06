@@ -20,7 +20,8 @@ body {
 /* Ads */
 .ads-container.no-glass {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
+  height: 200px;
   margin: 20px auto 40px;
   overflow: hidden;
   border-radius: 16px;
@@ -37,29 +38,97 @@ body {
 
 .ads-slide img {
   width: 100%;
+  height: 100%
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 16px;
 }
 
 /* Payment slider */
-.payment-slide {
+.payment-container {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-.payment-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 10px;
-  cursor: pointer;
-  border-radius: 12px;
-  object-fit: contain;
-  transition: transform 0.2s;
-}
-.payment-icon:hover {
-  transform: scale(1.05);
+  align-items: center;
+  position: relative;
+  max-width: 500px;
+  margin: 20px auto;
+  overflow: hidden;
 }
 
+.payment-slide-wrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+.payment-slide {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.payment-card {
+  min-width: 120px;  /* sesuaikan ukuran */
+  margin: 0 10px;
+  text-align: center;
+}
+
+.payment-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+}
+
+.payment-number {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.payment-card button {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.slide-btn {
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+/* zoomqr */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+}
 /* Stats */
 .stats div {
   margin: 5px 0;
