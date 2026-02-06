@@ -32,16 +32,11 @@ function showNextAd() {
   adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
 }
 
-// Auto slide setiap 4 detik
-let adInterval = setInterval(showNextAd, 4000);
+let adInterval = setInterval(showNextAd, 3000);
 
-// Pause on hover
 const adsContainer = document.querySelector('.ads-container');
 adsContainer.addEventListener('mouseenter', () => clearInterval(adInterval));
 adsContainer.addEventListener('mouseleave', () => adInterval = setInterval(showNextAd, 4000));
-// Firebase database module
-import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-const database = getDatabase();
 
 // Realtime count
 onValue(ref(database, 'copyCount'), snap => {
@@ -50,7 +45,9 @@ onValue(ref(database, 'copyCount'), snap => {
 onValue(ref(database, 'trxCount'), snap => {
   trxCountEl.textContent = snap.val() || 0;
 });
-
+onValue(ref(db, 'socialClick'), snap => {
+  document.getElementById("socialClick").textContent = snap.val() || 0;
+});
 // Slider functions
 function updateUI() {
   const p = payments[index];
