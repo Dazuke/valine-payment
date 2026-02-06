@@ -3,9 +3,31 @@ const payments = [
   { name: "Dana", number: "8787-2848-734", icon: "assets/dana.jpg" },
   { name: "Gopay", number: "8787-2848-734", icon: "assets/gopay.png" },
   { name: "ShopeePay", number: "8787-2848-734", icon: "assets/shopepay.png" },
-  { name: "QRIS", number: "Scan QR", icon: "assets/whatsapp-group.png" }
+  { name: "QRIS", number: "Scan QR", icon: "assets/qris.png" }
 ];
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
+const db = getDatabase();
+
+// Listener jumlah salin nomor
+onValue(ref(db, 'copyCount'), snapshot => {
+  document.getElementById("copyCount").textContent = snapshot.val() || 0;
+});
+
+// Listener jumlah klik social
+onValue(ref(db, 'socialClick'), snapshot => {
+  document.getElementById("socialClick").textContent = snapshot.val() || 0;
+});
+
+// Fungsi increment salin nomor
+function incrementCopy() {
+  runTransaction(ref(db, 'copyCount'), current => (current || 0) + 1);
+}
+
+// Fungsi increment klik social
+function incrementSocial() {
+  runTransaction(ref(db, 'socialClick'), current => (current || 0) + 1);
+}
 let index = 0;
 
 // DOM
