@@ -1,0 +1,57 @@
+[debug] [2026-02-06T18:29:09.148Z] ----------------------------------------------------------------------
+[debug] [2026-02-06T18:29:09.152Z] Command:       /usr/local/nvm/versions/node/v24.12.0/bin/node /usr/local/node_packages/node_modules/.bin/firebase init hosting
+[debug] [2026-02-06T18:29:09.152Z] CLI Version:   14.26.0
+[debug] [2026-02-06T18:29:09.153Z] Platform:      linux
+[debug] [2026-02-06T18:29:09.153Z] Node Version:  v24.12.0
+[debug] [2026-02-06T18:29:09.153Z] Time:          Fri Feb 06 2026 18:29:09 GMT+0000 (Coordinated Universal Time)
+[debug] [2026-02-06T18:29:09.154Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/andhikaputra523/valinepaymentweb
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-02-06T18:29:09.787Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-06T18:29:09.788Z] > authorizing via signed-in user (andhikaputra523@gmail.com)
+[debug] [2026-02-06T18:29:09.790Z] Checked if tokens are valid: true, expires at: 1770405873898
+[debug] [2026-02-06T18:29:09.791Z] Checked if tokens are valid: true, expires at: 1770405873898
+[debug] [2026-02-06T18:29:09.792Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad [none]
+[debug] [2026-02-06T18:29:10.120Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad 200
+[debug] [2026-02-06T18:29:10.120Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad {"projectId":"valine-b06ad","projectNumber":"188820674947","displayName":"Valine","name":"projects/valine-b06ad","resources":{"hostingSite":"valine-b06ad","realtimeDatabaseInstance":"valine-b06ad-default-rtdb"},"state":"ACTIVE","etag":"1_97690c12-485f-4835-a986-ac4d9030d42a"}
+[info] i  Using project valine-b06ad (Valine) . 
+[info] 
+=== Hosting Setup
+[debug] [2026-02-06T18:29:10.137Z] Checked if tokens are valid: true, expires at: 1770405873898
+[debug] [2026-02-06T18:29:10.137Z] Checked if tokens are valid: true, expires at: 1770405873898
+[debug] [2026-02-06T18:29:10.138Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad [none]
+[debug] [2026-02-06T18:29:10.406Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad 200
+[debug] [2026-02-06T18:29:10.406Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/valine-b06ad {"projectId":"valine-b06ad","projectNumber":"188820674947","displayName":"Valine","name":"projects/valine-b06ad","resources":{"hostingSite":"valine-b06ad","realtimeDatabaseInstance":"valine-b06ad-default-rtdb"},"state":"ACTIVE","etag":"1_97690c12-485f-4835-a986-ac4d9030d42a"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] 
+[info] i  Detected a .git folder at /home/andhikaputra523/valinepaymentweb 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=19496158&redirect_uri=http%3A%2F%2Flocalhost%3A9008&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
