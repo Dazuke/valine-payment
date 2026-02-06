@@ -164,6 +164,38 @@ body {
 }
 
 /* ==================================
+ Iklan
+ ==================================== */
+.ads-container {
+  width: 100%;
+  max-width: 400px; /* optional, sesuaikan */
+  overflow: hidden;
+  margin: 20px auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+/* efek kaca */
+.ads-container.glass {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.ads-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.ads-slide img {
+  width: 100%;
+   height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 16px; /* biar sesuai bingkai */
+}
+/* ==================================
    QR Modal
 ================================== */
 .qr-modal {
