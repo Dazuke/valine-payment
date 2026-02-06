@@ -9,25 +9,6 @@ import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.c
 
 const db = getDatabase();
 
-// Listener jumlah salin nomor
-onValue(ref(db, 'copyCount'), snapshot => {
-  document.getElementById("copyCount").textContent = snapshot.val() || 0;
-});
-
-// Listener jumlah klik social
-onValue(ref(db, 'socialClick'), snapshot => {
-  document.getElementById("socialClick").textContent = snapshot.val() || 0;
-});
-
-// Fungsi increment salin nomor
-function incrementCopy() {
-  runTransaction(ref(db, 'copyCount'), current => (current || 0) + 1);
-}
-
-// Fungsi increment klik social
-function incrementSocial() {
-  runTransaction(ref(db, 'socialClick'), current => (current || 0) + 1);
-}
 let index = 0;
 
 // DOM
@@ -37,6 +18,7 @@ const payNumber = document.getElementById("payNumber");
 const copyBtn = document.getElementById("copyBtn");
 const copyCountEl = document.getElementById("copyCount");
 const trxCountEl = document.getElementById("trxCount");
+const socialClickE1 = document.getElementById("socialClick");
 const qrModal = document.getElementById("qrModal");
 const qrBig = document.getElementById("qrBig");
 const adsSlide = document.querySelector('.ads-slide');
@@ -108,6 +90,10 @@ copyBtn.onclick = () => {
   setTimeout(() => copyBtn.textContent = "📎 Salin Nomor", 1200);
 };
 
+// Fungsi increment klik social
+function incrementSocial() {
+  runTransaction(ref(db, 'socialClick'), current => (current || 0) + 1);
+}
 // QR Modal
 function openQR(src) {
   qrBig.src = src;
