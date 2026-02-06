@@ -17,7 +17,24 @@ const copyCountEl = document.getElementById("copyCount");
 const trxCountEl = document.getElementById("trxCount");
 const qrModal = document.getElementById("qrModal");
 const qrBig = document.getElementById("qrBig");
+const adsSlide = document.querySelector('.ads-slide');
+const adsImages = document.querySelectorAll('.ads-slide img');
 
+let adIndex = 0;
+
+function showNextAd() {
+  adIndex++;
+  if(adIndex >= adsImages.length) adIndex = 0;
+  adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
+}
+
+// Auto slide setiap 4 detik
+let adInterval = setInterval(showNextAd, 4000);
+
+// Pause on hover
+const adsContainer = document.querySelector('.ads-container');
+adsContainer.addEventListener('mouseenter', () => clearInterval(adInterval));
+adsContainer.addEventListener('mouseleave', () => adInterval = setInterval(showNextAd, 4000));
 // Firebase database module
 import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 const database = getDatabase();
