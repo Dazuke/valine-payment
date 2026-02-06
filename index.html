@@ -7,7 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="ads-container glass">
+  <div class="ads-slide">
+    <img src="assets/iklan1.jpg" alt="Iklan 1">
+    <img src="assets/iklan2.jpg" alt="Iklan 2">
+    <img src="assets/iklan3.jpg" alt="Iklan 3">
+  </div>
+</div>
+  
 <div class="bg"></div>
 
 <div class="card">
@@ -16,27 +23,29 @@
 
   <div class="counter">
     <span>📎 Disalin: <b id="copyCount">0</b></span>
-    <span>💸 Transaksi: <b id="trxCount">0</b></span>
+    <span>💸 Support: <b id="socialClick">0</b></span>
   </div>
 
   <div class="payment">
     <img id="payIcon" src="assets/dana.jpg">
     <p id="payName">Dana</p>
-    <p id="payNumber">087872848734</p>
+    <p id="payNumber">878-7284-8734</p>
 
     <button id="copyBtn">📎 Salin Nomor</button>
     <div class="switch">
-      <button onclick="prevPay()">‹</button>
-      <button onclick="nextPay()">›</button>
+      <button onclick="prevPay()"> <~ Geser Kiri</button>
+      <button onclick="nextPay()"> Geser Kanan ~></button>
     </div>
   </div>
 
   <h3>Jangan Lupa Support nyaa!!</h3>
   <div class="social">
-    <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank">
+    <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank"
+      onclick="incrementSocial()" >
       <img src="assets/whatsapp-group.png"><span>Group</span>
     </a>
-    <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank">
+    <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank"
+      onclick="incrementSocial()">
       <img src="assets/whatsapp-channel.png"><span>Saluran</span>
     </a>
     <div class="disabled">
@@ -47,14 +56,7 @@
     </div>
   </div>
 
-<div class="ads-container glass">
-  <div class="ads-slide">
-    <img src="assets/iklan1.jpg" alt="Iklan 1">
-    <img src="assets/iklan2.jpg" alt="Iklan 2">
-    <img src="assets/iklan3.jpg" alt="Iklan 3">
-  </div>
-</div>
-  
+
 </div>
 
 <!-- QR Zoom Modal -->
