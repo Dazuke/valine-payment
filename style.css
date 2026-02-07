@@ -1,20 +1,30 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-body { min-height:100vh; display:flex; flex-direction:column; align-items:center; background:#222; color:#fff; overflow-x:hidden; }
+body {
+  min-height:100vh;
+  background:#222;
+  color:#fff;
+}
+
+.main {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 .bg { position:fixed; inset:0; background:url('assets/bg/wallpaper.png') no-repeat center/cover; filter:blur(4px); z-index:-1; }
 
 /* Iklan di atas */
-.ads-container.no-glass { width:90%; max-width:480px; height:180px; margin:20px auto; overflow:hidden; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.2); position:relative; z-index:1000; }
+.ads-container.no-glass { width:90%; max-width:480px; height:180px; margin:20px auto; overflow:hidden; border-radius:0; box-shadow:0 4px 12px rgba(0,0,0,0.2); position:relative; z-index:1000; }
 .ads-slide { display:flex; transition: transform 0.5s ease-in-out; height:100%; }
 .ads-slide img { width:100%; flex-shrink:0; object-fit:cover; border-radius:16px; }
 
 /* Card */
-.card { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border-radius:24px; padding:32px 24px; width:320px; max-width:90%; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.6); margin-bottom:40px; }
+.card { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border-radius:24px; border-left:2px solid rgba(56,189,248,0.8); padding:32px 24px; width:100%; max-width:420px; text-align:center; box-shadow:0 8px 32px rgba(0,0,0,0.6); margin-bottom:40px; }
 .card h1 { font-size:28px; margin-bottom:6px; }
 .card .subtitle { font-size:14px; opacity:0.8; margin-bottom:12px; }
 .counter { display:flex; justify-content:space-between; margin-bottom:16px; font-size:14px; }
 
 /* Payment */
-.payment { background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; margin-bottom:18px; }
+.payment { background: rgba(255,255,255,0.04); padding:12px; border-radius:16px; margin-bottom:18px; }
 .payment img { width:80px; height:80px; border-radius:16px; margin-bottom:8px; cursor:pointer; }
 .payment #payName { font-weight:bold; margin-bottom:4px; }
 .payment #payNumber { font-size:14px; margin-bottom:8px; }
@@ -25,7 +35,7 @@ body { min-height:100vh; display:flex; flex-direction:column; align-items:center
 
 /* Social 2x2 */
 .social { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
-.social a, .social .disabled { display:flex; flex-direction:column; align-items:center; text-decoration:none; background: rgba(255,255,255,0.05); padding:12px; border-radius:16px; transition:0.2s; }
+.social a, .social .disabled { display:flex; flex-direction:column; align-items:center; text-decoration:none; background: rgba(255,255,255,0.04); padding:12px; border-radius:16px; transition:0.2s; }
 .social a:hover { background: rgba(255,255,255,0.15); }
 .social img { width:40px; height:40px; margin-bottom:6px; }
 .social span { font-size:12px; text-align:center; }
