@@ -188,7 +188,7 @@ body.dark {
 }
 
 input, button, select, textarea {
-  color:#fff;
+  color:#111;
 }
 
 input::placeholder {
