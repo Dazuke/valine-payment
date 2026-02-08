@@ -143,10 +143,6 @@ function moveAds(){
 
 let adsInterval=setInterval(moveAds,3000);
 
-adsContainer?.addEventListener("mouseenter",()=>clearInterval(adsInterval));
-adsContainer?.addEventListener("mouseleave",()=>{
-  adsInterval=setInterval(moveAds,3000);
-});
 
 /* ================= INIT ================= */
 updatePaymentUI();
