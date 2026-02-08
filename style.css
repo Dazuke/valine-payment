@@ -30,6 +30,7 @@ body {
   height:180px;
   margin:20px auto;
   overflow:hidden;
+  position:relative;
 }
 
 .ads-slide { display:flex;
