@@ -1,91 +1,105 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Valine</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Iklan di atas -->
-<div class="ads-container no-glass">
-  <div class="ads-slide">
-    <img src="assets/iklan1.jpg" alt="Iklan 1">
-    <img src="assets/iklan2.jpg" alt="Iklan 2">
-    <img src="assets/iklan3.jpg" alt="Iklan 3">
-  </div>
-</div>
-
+<!-- Background -->
 <div class="bg"></div>
 
-<div class="card">
-  <h1>VALINE</h1>
-  <p class="subtitle">Payment & Official Links</p>
-
-  <div class="counter">
-    <span>📎 Salin Nomor: <b id="copyCount">0</b></span>
-    <span>🌐 Klik Social: <b id="socialClick">0</b></span>
+<!-- Iklan -->
+<div class="ads-container no-glass">
+  <div class="ads-slide">
+    <img src="assets/iklan1.jpg">
+    <img src="assets/iklan2.jpg">
+    <img src="assets/iklan3.jpg">
+    <img src="assets/iklan1.jpg" class="clone">
   </div>
+</div>
 
-  <!-- Payment Manual Slide -->
-  <div class="payment">
-    <img id="payIcon" src="assets/dana.jpg" alt="Payment Icon">
-    <p id="payName">Dana</p>
-    <p id="payNumber">8787-2848-734</p>
+<div class="main">
+  <div class="card">
+    <h1>VALINE</h1>
+    <p class="subtitle">Payment & Official Links</p>
 
-    <button id="copyBtn">📎 Salin Nomor</button>
-    <div class="switch">
-      <button onclick="prevPay()"> <~ Geser Kiri</button>
-      <button onclick="nextPay()"> Geser Kanan ~></button>
+    <div class="counter">
+      <span>📎 Salin: <b id="copyCount">0</b></span>
+      <span>🌐 Social: <b id="socialClick">0</b></span>
     </div>
-    <p class="qr-hint" id="qrHint"></p>
-  </div>
 
-  <!-- Social 2x2 -->
-  <div class="social">
-    <a href="https://chat.whatsapp.com/JiDk2HiRqsdLjV0KvAg7YO" target="_blank" onclick="incrementSocial()">
-      <img src="svg /whatsapp.svg"><span>Group</span>
-    </a>
-    <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" target="_blank" onclick="incrementSocial()">
-      <img src="svg /whatsapp.svg"><span>Saluran</span>
-    </a>
-    <div class="disabled">
-      <img src="svgb/tiktok.svg"><span>TikTok<br>Maintenance</span>
+    <!-- PAYMENT -->
+    <div class="payment">
+      <img id="payIcon" src="assets/dana.jpg">
+      <p id="payName">Dana</p>
+      <p id="payNumber">8787-2848-734</p>
+
+      <button id="copyBtn">📎 Salin Nomor</button>
+
+      <!-- QRIS INPUT -->
+      <div class="qris-box" id="qrisBox">
+        <input 
+          type="number" 
+          id="qrisAmount" 
+          placeholder="Masukkan nominal (contoh: 25000)"
+          min="1000"
+        >
+        <button onclick="generateQrisFrontend()">Buat QRIS</button>
+      </div>
+
+      <div class="switch">
+        <button onclick="prevPay()">‹ Kiri</button>
+        <button onclick="nextPay()">Kanan ›</button>
+      </div>
     </div>
-    <div class="disabled">
-      <img src="svg /youtube.svg"><span>YouTube<br>Maintenance</span>
+
+    <!-- SOCIAL -->
+    <div class="social">
+      <a href="#" onclick="incrementSocial()">
+        <img src="svg/whatsapp.svg">
+        <span>Group</span>
+      </a>
+      <a href="#" onclick="incrementSocial()">
+        <img src="svg/whatsapp.svg">
+        <span>Channel</span>
+      </a>
+      <div class="disabled">
+        <img src="svg/tiktok.svg">
+        <span>TikTok<br>Maintenance</span>
+      </div>
+      <div class="disabled">
+        <img src="svg/youtube.svg">
+        <span>YouTube<br>Maintenance</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- QR Modal -->
+<!-- QR MODAL -->
 <div id="qrModal" class="qr-modal" onclick="closeQR()">
-  <img id="qrBig" src="">
+  <img id="qrBig">
   <p>Klik di mana saja untuk menutup</p>
 </div>
 
-<!-- Firebase SDK -->
+<!-- Firebase (counter saja) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+  import { getDatabase } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyC98TkQYLipSzloE_St46XA4O1rv2rzT20",
-    authDomain: "valine-b06ad.firebaseapp.com",
-    databaseURL: "https://valine-b06ad-default-rtdb.firebaseio.com",
-    projectId: "valine-b06ad",
-    storageBucket: "valine-b06ad.appspot.com",
-    messagingSenderId: "188820674947",
-    appId: "1:188820674947:web:450cdc461e7ced7d04beb6",
-    measurementId: "G-01TR04E4YT"
+    apiKey: "API_KEY",
+    authDomain: "PROJECT.firebaseapp.com",
+    databaseURL: "https://PROJECT.firebaseio.com",
+    projectId: "PROJECT"
   };
 
   const app = initializeApp(firebaseConfig);
-  const database = getDatabase(app);
-  window.database = database; // supaya bisa dipakai di script.js
+  window.database = getDatabase(app);
 </script>
 
-<script src="script.js" type="module"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
