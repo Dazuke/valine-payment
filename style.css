@@ -157,7 +157,6 @@ body.dark {
 .social span {
   font-size:13px;
   font-weight:600;
-  color:#fff;
   text-align:center;
   line-height:1.2;
 }
@@ -166,7 +165,6 @@ body.dark {
   border-radius:16px;
   padding:12px;
   text-align:center;
-  color:#fff;
 }
 
 .disabled {
