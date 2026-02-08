@@ -143,6 +143,9 @@ function moveAds(){
 
 let adsInterval=setInterval(moveAds,3000);
 
-
+/* ================= DARK ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("dark");
+});
 /* ================= INIT ================= */
 updatePaymentUI();
