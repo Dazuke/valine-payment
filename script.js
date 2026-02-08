@@ -25,9 +25,26 @@ const payName = document.getElementById("payName");
 const payNumber = document.getElementById("payNumber");
 const copyBtn = document.getElementById("copyBtn");
 const qrisBox = document.getElementById("qrisBox");
-
 const copyCountEl = document.getElementById("copyCount");
 const socialClickEl = document.getElementById("socialClick");
+const dotsContainer = document.getElementById("adsDots");
+const realAdsCount = totalAds - 1;
+const adsSlide = document.querySelector(".ads-slide");
+const adsImages = document.querySelectorAll(".ads-slide img");
+
+// bikin dot
+for (let i = 0; i < realAdsCount; i++) {
+  const dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+  dotsContainer.appendChild(dot);
+}
+
+const dots = dotsContainer.querySelectorAll("span");
+
+function updateDots() {
+  dots.forEach(d => d.classList.remove("active"));
+  dots[adIndex % realAdsCount].classList.add("active");
+}
 
 function initCounters() {
   onValue(ref(db,"copyCount"), s => {
@@ -106,9 +123,6 @@ window.closeQR=()=>{
 };
 
 // ===== ADS SLIDER =====
-const adsSlide = document.querySelector(".ads-slide");
-const adsImages = document.querySelectorAll(".ads-slide img");
-
 let adIndex = 0;
 const totalAds = adsImages.length;
 
@@ -117,16 +131,17 @@ function moveAds() {
   adsSlide.style.transition = "transform 0.6s ease-in-out";
   adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
 
-  // Kalau sudah di clone terakhir, reset tanpa animasi
+  updateDots();
+
   if (adIndex === totalAds - 1) {
     setTimeout(() => {
       adsSlide.style.transition = "none";
       adIndex = 0;
       adsSlide.style.transform = "translateX(0)";
+      updateDots();
     }, 600);
   }
 }
-
 // Autoplay
 let adsInterval = setInterval(moveAds, 3000);
 
