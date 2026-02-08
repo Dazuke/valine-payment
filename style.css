@@ -5,17 +5,25 @@
   font-family:'Segoe UI',sans-serif;
 }
 
+/* default: light mode */
 body {
-  min-height:100vh;
-  background:#fff;
-  color:#111;
+  color:black;           /* warna teks normal */
+  background-color: white; /* background normal */
+  transition: 0.3s;       /* halus saat berubah mode */
 }
 
-@media (prefers-color-scheme: dark) {
+/* kalau user pakai dark mode */
+@media (prefers-color-scheme:dark) {
   body {
-    background:#111;
-    color:#fff;
+    color:white;          /* teks putih */
+    background-color:#111; /* background gelap */
   }
+}
+
+/* opsional, kalau pakai toggle manual */
+body.dark {
+  color:white;
+  background-color:#111;
 }
 
 .bg {
