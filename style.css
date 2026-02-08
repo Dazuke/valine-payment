@@ -11,6 +11,13 @@ body {
   color:#fff;
 }
 
+@media (prefers-color-scheme: light) {
+  body {
+    background:#111;
+    color:#fff;
+  }
+}
+
 .bg {
   position:fixed;
   inset:0;
@@ -30,7 +37,6 @@ body {
   height:180px;
   margin:20px auto;
   overflow:hidden;
-  position:relative;
 }
 
 .ads-slide { display:flex;
@@ -52,6 +58,7 @@ body {
   padding:28px;
   margin-bottom:40px;
   box-shadow:0 8px 32px rgba(0,0,0,.6);
+  color:#fff;
 }
 
 .subtitle {
@@ -72,6 +79,7 @@ body {
   border-radius:18px;
   padding:16px;
   text-align:center;
+  color:#fff;
 }
 
 .payment img {
@@ -86,11 +94,12 @@ body {
   border:none;
   border-radius:12px;
   cursor:pointer;
+  font-weigh:600;
 }
 
 #copyBtn {
   background:#1abc9c;
-  color:#fff;
+  color:#000;
 }
 
 .switch {
@@ -149,6 +158,7 @@ body {
   border-radius:16px;
   padding:12px;
   text-align:center;
+  color:#fff;
 }
 
 .disabled {
@@ -169,4 +179,12 @@ body {
   width:80%;
   max-width:320px;
   border-radius:16px;
+}
+
+input, button, select, textarea {
+  color:#fff;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
 }
