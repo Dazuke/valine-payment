@@ -105,4 +105,53 @@ window.closeQR=()=>{
   document.getElementById("qrModal").style.display="none";
 };
 
+// ===== ADS SLIDER =====
+const adsSlide = document.querySelector(".ads-slide");
+const adsImages = document.querySelectorAll(".ads-slide img");
+
+let adIndex = 0;
+const totalAds = adsImages.length;
+
+function moveAds() {
+  adIndex++;
+  adsSlide.style.transition = "transform 0.6s ease-in-out";
+  adsSlide.style.transform = `translateX(${-adIndex * 100}%)`;
+
+  // Kalau sudah di clone terakhir, reset tanpa animasi
+  if (adIndex === totalAds - 1) {
+    setTimeout(() => {
+      adsSlide.style.transition = "none";
+      adIndex = 0;
+      adsSlide.style.transform = "translateX(0)";
+    }, 600);
+  }
+}
+
+// Autoplay
+let adsInterval = setInterval(moveAds, 3000);
+
+const adsContainer = document.querySelector(".ads-container");
+
+adsContainer.addEventListener("mouseenter", () => {
+  clearInterval(adsInterval);
+});
+
+adsContainer.addEventListener("mouseleave", () => {
+  adsInterval = setInterval(moveAds, 3000);
+});
+
+.ads-container {
+  overflow:hidden;
+}
+
+.ads-slide {
+  display:flex;
+  width:400%;
+}
+
+.ads-slide img {
+  width:100%;
+  flex-shrink:0;
+}
+
 updateUI();
