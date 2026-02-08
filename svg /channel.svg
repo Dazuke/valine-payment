@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Head -->
+    <circle cx="100" cy="105" r="55"/>
+
+    <!-- Ears -->
+    <circle cx="55" cy="60" r="18"/>
+    <circle cx="145" cy="60" r="18"/>
+
+    <!-- Eyes -->
+    <ellipse cx="80" cy="100" rx="10" ry="14"/>
+    <ellipse cx="120" cy="100" rx="10" ry="14"/>
+
+    <!-- Nose -->
+    <ellipse cx="100" cy="118" rx="6" ry="4"/>
+
+    <!-- Mouth -->
+    <path d="M92 125 Q100 132 108 125"/>
+
+    <!-- Body -->
+    <path d="M65 155
+             Q100 175 135 155"/>
+
+    <!-- Arms -->
+    <path d="M55 145 Q45 155 48 165"/>
+    <path d="M145 145 Q155 155 152 165"/>
+
+  </g>
+</svg>
