@@ -32,14 +32,12 @@ body {
   overflow:hidden;
 }
 
-.ads-slide {
-  display:flex;
-  transition:transform .5s ease;
+.ads-slide img {
+  flex: 0 0 100%;
 }
 
-.ads-slide img {
-  width:100%;
-  object-fit:cover;
+.ads-slide {
+  will-change: transform;
 }
 
 .card {
