@@ -119,7 +119,7 @@ body.dark {
 .switch button {
   flex:1;
   background:rgba(255,255,255,.1);
-  color:#fff;
+  color:white;
 }
 
 .qris-box {
