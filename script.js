@@ -72,14 +72,27 @@ window.prevPay=()=>{
   index=(index-1+payments.length)%payments.length;
   updateUI();
 };
+const qrisInput = document.getElementById("qrisAmount");
 
-window.generateQrisFrontend=()=>{
-  const amount=document.getElementById("qrisAmount").value;
-  if(!amount||amount<1000){
+qrisInput.addEventListener("input", () => {
+  let value = qrisInput.value.replace(/\D/g, "");
+  if (!value) {
+    qrisInput.value = "";
+    return;
+  }
+  qrisInput.value = Number(value).toLocaleString("id-ID");
+});
+
+window.generateQrisFrontend = () => {
+  const raw = qrisInput.value.replace(/\./g, "");
+  const amount = parseInt(raw);
+
+  if (!amount || amount < 1000) {
     alert("Nominal minimal Rp1.000");
     return;
   }
-  const qr=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=QRIS|VALINE|${amount}`;
+
+  const qr = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=QRIS|VALINE|${amount}`;
   openQR(qr);
 };
 
