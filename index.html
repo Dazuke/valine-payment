@@ -42,10 +42,11 @@
       <!-- QRIS INPUT -->
       <div class="qris-box" id="qrisBox">
         <input 
-          type="number" 
+          type="text" 
           id="qrisAmount" 
-          placeholder="Masukkan nominal (contoh: 25000)"
-          min="1000"
+          placeholder="Masukkan nominal"
+          inputmode="numeric"
+          autocomplete="off"
         >
         <button onclick="generateQrisFrontend()">Buat QRIS</button>
       </div>
