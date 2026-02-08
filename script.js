@@ -1,7 +1,15 @@
 import { ref, onValue, runTransaction } from
 "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-const db = window.database;
+let db;
+
+const waitForDB = setInterval(() => {
+  if (window.database) {
+    db = window.database;
+    initCounters();
+    clearInterval(waitForDB);
+  }
+}, 100);
 
 const payments = [
   { name:"Dana", number:"8787-2748-734", icon:"assets/dana.jpg" },
@@ -21,9 +29,15 @@ const qrisBox = document.getElementById("qrisBox");
 const copyCountEl = document.getElementById("copyCount");
 const socialClickEl = document.getElementById("socialClick");
 
-onValue(ref(db,"copyCount"),s=>copyCountEl.textContent=s.val()||0);
-onValue(ref(db,"socialClick"),s=>socialClickEl.textContent=s.val()||0);
+function initCounters() {
+  onValue(ref(db,"copyCount"), s => {
+    copyCountEl.textContent = s.val() || 0;
+  });
 
+  onValue(ref(db,"socialClick"), s => {
+    socialClickEl.textContent = s.val() || 0;
+  });
+}
 function updateUI(){
   const p = payments[index];
   payIcon.src = p.icon;
