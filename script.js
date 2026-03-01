@@ -30,7 +30,7 @@ const qrisBox   = document.getElementById("qrisBox");
 function updatePaymentUI() {
   const p = payments[payIndex];
   payIcon.src = p.icon;
-  payName.textContent = p.name;
+  payName.textContent = p.name;}
 
 
 window.nextPay = () => {
