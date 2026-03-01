@@ -13,9 +13,9 @@ const waitForDB = setInterval(() => {
 
 /* ================= PAYMENT ================= */
 const payments = [
-  { name:"Dana", number:"8787-2748-734", icon:"assets/dana.jpg" },
-  { name:"Gopay", number:"8787-2748-734", icon:"assets/gopay.png" },
-  { name:"ShopeePay", number:"8787-2748-734", icon:"assets/shopepay.png" },
+  { name:"Dana", number:"08787-2748-734", icon:"assets/dana.jpg" },
+  { name:"Gopay", number:"08787-2748-734", icon:"assets/gopay.png" },
+  { name:"ShopeePay", number:"08787-2748-734", icon:"assets/shopepay.png" },
   { name:"QRIS", number:"", icon:"assets/qris.png" }
 ];
 
@@ -32,16 +32,6 @@ function updatePaymentUI() {
   payIcon.src = p.icon;
   payName.textContent = p.name;
 
-  if (p.name === "QRIS") {
-    copyBtn.style.display = "none";
-    payNumber.textContent = "Masukkan nominal lalu buat QR";
-    qrisBox.style.display = "flex";
-  } else {
-    copyBtn.style.display = "inline-block";
-    payNumber.textContent = p.number;
-    qrisBox.style.display = "none";
-  }
-}
 
 window.nextPay = () => {
   payIndex = (payIndex + 1) % payments.length;
@@ -73,21 +63,6 @@ payBox?.addEventListener("touchend", e => {
 });
 
 /* ================= QRIS ================= */
-const qrisInput = document.getElementById("qrisAmount");
-
-qrisInput?.addEventListener("input", () => {
-  const raw = qrisInput.value.replace(/\D/g,"");
-  qrisInput.value = raw ? Number(raw).toLocaleString("id-ID") : "";
-});
-
-window.generateQrisFrontend = () => {
-  const amount = parseInt(qrisInput.value.replace(/\./g,""));
-  if (!amount || amount < 1000) {
-    alert("Nominal minimal Rp1.000");
-    return;
-  }
-  openQR(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=QRIS|VALINE|${amount}`);
-};
 
 window.openQR = src => {
   document.getElementById("qrBig").src = src;
