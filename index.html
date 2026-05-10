@@ -8,10 +8,12 @@
 </head>
 <body>
 
-<!-- Background -->
 <div class="bg"></div>
 
-<!-- Iklan -->
+<div class="live-payment" id="livePayment">
+  Someone paid Rp50.000 via QRIS
+</div>
+
 <div class="ads-container no-glass">
   <div class="ads-slide">
     <img src="assets/iklan1.jpg">
@@ -19,9 +21,12 @@
     <img src="assets/iklan3.jpg">
   </div>
 </div>
+
 <div id="adsDots"></div>
+
 <div class="main">
   <div class="card">
+
     <h1>VALINE</h1>
     <p class="subtitle">Payment & Official Links</p>
 
@@ -30,68 +35,74 @@
       <span>🌐 Social: <b id="socialClick">0</b></span>
     </div>
 
-    <!-- PAYMENT -->
     <div class="payment">
+
+      <div class="payment-status">
+        <span class="dot"></span>
+        PAYMENT GATEWAY ACTIVE
+      </div>
+
       <img id="payIcon" src="assets/dana.jpg">
       <p id="payName">Dana</p>
-      <p id="payNumber">8787-2748-734</p>
+      <p id="payNumber">087872748734</p>
 
       <button id="copyBtn">📎 Salin Nomor</button>
 
-      <!-- QRIS INPUT -->
-      <div class="qris-box" id="qrisBox">
-        <input 
-          type="text" 
-          id="qrisAmount" 
-          placeholder="Masukkan nominal"
-          inputmode="numeric"
-          autocomplete="off"
-        >
-        <button onclick="generateQrisFrontend()">Buat QRIS</button>
+      <div class="invoice-box">
+        <input type="number" id="amountInput" placeholder="Masukkan nominal">
+        <button onclick="createInvoice()">Buat Invoice</button>
       </div>
+
+      <div id="invoiceResult" class="invoice-result"></div>
 
       <div class="switch">
         <button onclick="prevPay()">‹ Kiri</button>
         <button onclick="nextPay()">Kanan ›</button>
       </div>
+
     </div>
 
-    <!-- SOCIAL -->
     <div class="social">
+
       <a href="https://chat.whatsapp.com/FbZABeibky3Er6iIzHAQQL?mode=gi_t" onclick="incrementSocial()">
-        <img src="svg /whatsapp.svg">
+        <img src="svg/whatsapp.svg">
         <span>Group</span>
       </a>
+
       <a href="https://whatsapp.com/channel/0029Vb7W0LHJUM2jP4wOng1x" onclick="incrementSocial()">
-        <img src="svg /channel.svg">
-        <span>Channel</span>
+        <img src="svg/channel.svg">
+        <span>Saluran</span>
       </a>
-      <div class="social">
-        <img src="svg /tiktok.svg">
+
+      <a href="#">
+        <img src="svg/tiktok.svg">
         <span>TikTok<br>Maintenance</span>
-      </div>
-      <div class="social">
-        <img src="svg /youTube.svg">
-        <a href="https://youtube.com/@AkariValinee" onclick="incrementSocial()">
+      </a>
+
+      <a href="https://youtube.com/@AkariValinee" onclick="incrementSocial()">
+        <img src="svg/youtube.svg">
         <span>YouTube</span>
-      </div>
+      </a>
+
     </div>
+
   </div>
 </div>
 
-<!-- QR MODAL -->
 <div id="qrModal" class="qr-modal" onclick="closeQR()">
-  <img id="qrBig">
+  <img id="qrBig" src="assets/qris.png">
   <p>Klik di mana saja untuk menutup</p>
 </div>
 
-<!-- Firebase (counter saja) -->
+<audio id="tingSound">
+  <source src="assets/ting.mp3" type="audio/mpeg">
+</audio>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
   import { getDatabase } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
   const firebaseConfig = {
-    
     apiKey: "AIzaSyC98TkQYLipSzloE_St46XA4O1rv2rzT20",
     authDomain: "valine-b06ad.firebaseapp.com",
     databaseURL: "https://valine-b06ad-default-rtdb.firebaseio.com",
