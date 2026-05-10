@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALINE ADMIN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white p-5">
+
+<div id="loginBox" class="max-w-sm mx-auto bg-zinc-900 p-5 rounded-2xl mt-20">
+  <h1 class="text-2xl font-bold mb-4">Admin Login</h1>
+
+  <input
+    type="password"
+    id="adminPassword"
+    placeholder="Password admin"
+    class="w-full p-3 rounded-xl bg-zinc-800 outline-none"
+  >
+
+  <button
+    onclick="loginAdmin()"
+    class="w-full bg-violet-600 mt-4 p-3 rounded-xl font-bold"
+  >
+    Login
+  </button>
+</div>
+
+<div id="dashboard" class="hidden">
+
+  <h1 class="text-3xl font-bold mb-5">VALINE DASHBOARD</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+
+    <div class="bg-zinc-900 p-5 rounded-2xl">
+      <p class="text-zinc-400">Total Transaksi</p>
+      <h2 id="totalTrx" class="text-3xl font-bold">0</h2>
+    </div>
+
+    <div class="bg-zinc-900 p-5 rounded-2xl">
+      <p class="text-zinc-400">Total Income</p>
+      <h2 id="totalIncome" class="text-3xl font-bold">Rp0</h2>
+    </div>
+
+    <div class="bg-zinc-900 p-5 rounded-2xl">
+      <p class="text-zinc-400">Paid Success</p>
+      <h2 id="paidCount" class="text-3xl font-bold">0</h2>
+    </div>
+
+  </div>
+
+  <div class="bg-zinc-900 p-5 rounded-2xl overflow-auto">
+
+    <table class="w-full text-left">
+      <thead>
+        <tr class="border-b border-zinc-700">
+          <th class="p-2">Invoice</th>
+          <th class="p-2">Method</th>
+          <th class="p-2">Amount</th>
+          <th class="p-2">Status</th>
+        </tr>
+      </thead>
+
+      <tbody id="trxTable"></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC98TkQYLipSzloE_St46XA4O1rv2rzT20",
+  authDomain: "valine-b06ad.firebaseapp.com",
+  databaseURL: "https://valine-b06ad-default-rtdb.firebaseio.com",
+  projectId: "valine-b06ad",
+  storageBucket: "valine-b06ad.appspot.com",
+  messagingSenderId: "188820674947",
+  appId: "1:188820674947:web:450cdc461e7ced7d04beb6",
+  measurementId: "G-01TR04E4YT"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.loginAdmin = () => {
+
+  const pass = document.getElementById("adminPassword").value;
+
+  if (pass !== "valineadmin") {
+    alert("Password salah");
+    return;
+  }
+
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+
+  loadDashboard();
+};
+
+function loadDashboard() {
+
+  onValue(ref(db, "transactions"), snapshot => {
+
+    const data = snapshot.val() || {};
+
+    const table = document.getElementById("trxTable");
+
+    table.innerHTML = "";
+
+    let total = 0;
+    let income = 0;
+    let paid = 0;
+
+    Object.entries(data).reverse().forEach(([id, trx]) => {
+
+      total++;
+
+      if (trx.status === "PAID") {
+        income += Number(trx.amount);
+        paid++;
+      }
+
+      table.innerHTML += `
+
+      <tr class="border-b border-zinc-800">
+        <td class="p-2">${id}</td>
+        <td class="p-2">${trx.method}</td>
+        <td class="p-2">Rp${Number(trx.amount).toLocaleString('id-ID')}</td>
+        <td class="p-2">${trx.status}</td>
+      </tr>
+
+      `;
+
+    });
+
+    document.getElementById("totalTrx").innerHTML = total;
+
+    document.getElementById("totalIncome").innerHTML =
+      "Rp" + income.toLocaleString('id-ID');
+
+    document.getElementById("paidCount").innerHTML = paid;
+
+  });
+}
+
+</script>
+</body>
+</html>
