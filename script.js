@@ -1,4 +1,4 @@
-import { ref, onValue, runTransaction, set } from
+  import { ref, onValue, runTransaction, set } from
 "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
 let db;
@@ -124,7 +124,7 @@ window.createInvoice = async () => {
   const amount = document.getElementById("amountInput").value;
 
   if (!amount || amount < 1000) {
-    alert("Minimal Rp1000");
+    alert("Minimal Rp1.000");
     return;
   }
 
@@ -181,6 +181,21 @@ async function fakeProcess(invoice) {
   }, 8000);
 }
 
+const amountInput = document.getElementById("amountInput");
+
+amountInput?.addEventListener("input", (e) => {
+
+  let value = e.target.value.replace(/\D/g, "");
+
+  if (!value) {
+    e.target.value = "";
+    return;
+  }
+
+  e.target.value = "Rp " + Number(value).toLocaleString("id-ID");
+
+});
+
 function startCountdown() {
 
   let time = 900;
@@ -235,10 +250,10 @@ function moveAds() {
 setInterval(moveAds, 3000);
 
 const fakePayments = [
-  "Someone paid Rp10.000 via Dana",
-  "Someone paid Rp25.000 via QRIS",
-  "Someone paid Rp50.000 via ShopeePay",
-  "Someone paid Rp100.000 via Gopay"
+  "🔴 Someone paid Rp10.000 via Dana",
+  "🔴 Someone paid Rp25.000 via QRIS",
+  "🔴 Someone paid Rp50.000 via ShopeePay",
+  "🔴 Someone paid Rp100.000 via Gopay"
 ];
 
 setInterval(() => {
