@@ -11,7 +11,7 @@
 <div class="bg"></div>
 
 <div class="live-payment" id="livePayment">
-  Someone paid Rp50.000 via QRIS
+  🔴 Someone paid Rp50.000 via QRIS
 </div>
 
 <div class="ads-container no-glass">
@@ -37,6 +37,21 @@
 
     <div class="payment">
 
+      <div class="amount-first-box">
+        <p class="amount-title">Masukkan Nominal Pembayaran</p>
+
+        <input
+          type="text"
+          id="amountInput"
+          placeholder="Rp 0"
+          inputmode="numeric"
+        >
+
+        <button onclick="createInvoice()">
+          Buat Invoice
+        </button>
+      </div>
+
       <div class="payment-status">
         <span class="dot"></span>
         PAYMENT GATEWAY ACTIVE
@@ -48,9 +63,12 @@
 
       <button id="copyBtn">📎 Salin Nomor</button>
 
-      <div class="invoice-box">
-        <input type="number" id="amountInput" placeholder="Masukkan nominal">
-        <button onclick="createInvoice()">Buat Invoice</button>
+      <div class="invoice-box" id="invoiceBox" style="display:none;">
+
+        <div class="invoice-head">
+          <span>PAYMENT METHOD</span>
+        </div>
+
       </div>
 
       <div id="invoiceResult" class="invoice-result"></div>
@@ -93,6 +111,10 @@
   <img id="qrBig" src="assets/qris.png">
   <p>Klik di mana saja untuk menutup</p>
 </div>
+
+<audio id="tingSound">
+  <source src="assets/ting.mp3" type="audio/mpeg">
+</audio>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
