@@ -147,6 +147,36 @@ body {
   color:#000;
 }
 
+.amount-first-box {
+  position:relative;
+  z-index:2;
+  margin-bottom:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.amount-title {
+  font-size:14px;
+  opacity:.8;
+}
+
+.amount-first-box input {
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  text-align:center;
+}
+
+.amount-first-box button {
+  background:#8b5cf6;
+  color:white;
+}
+
 .invoice-box {
   position:relative;
   z-index:2;
@@ -234,6 +264,26 @@ body {
   align-items:center;
   flex-direction:column;
   z-index:999;
+}
+
+.payment-preview {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
+}
+
+.qris-preview {
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.qris-preview:hover {
+  transform:scale(1.03);
 }
 
 .qr-modal img {
